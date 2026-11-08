@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="ui/ui.css">
+</head>
+<body>
+
+  <div class="ryu-tap-ripple-layer" id="ryuTapRippleLayer" aria-hidden="true"></div>
+
+  
+  <div class="version-block-overlay" id="versionBlockOverlay" hidden>
+    <div class="version-block-card">
+      <div class="version-block-title" id="versionBlockTitle"></div>
+      <div class="version-block-message" id="versionBlockMessage"></div>
+      <div class="version-block-versions">
+        <span id="versionBlockCurrent"></span>
+        <span id="versionBlockLatest"></span>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="version-block-overlay" id="accessBlockOverlay" hidden>
+    <div class="id-block-card">
+      <div class="id-block-eyebrow">Region Locked</div>
+      <div class="version-block-title" id="accessBlockTitle">Extension Unavailable</div>
+      <div class="version-block-message" id="accessBlockMessage"></div>
+      <div class="id-block-divider"></div>
+      <div class="id-block-ref">REF · GEO-GATE</div>
+    </div>
+  </div>
+
+  
+  <div class="version-block-overlay" id="tiktokCheckingOverlay" hidden>
+    <div class="id-block-card">
+      <div class="id-block-icon-wrap id-checking-icon-wrap">
+        <svg class="id-checking-spinner" viewBox="0 0 24 24" fill="none" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9" stroke="rgba(224,80,96,0.18)" stroke-width="2.5"></circle>
+          <path d="M12 3a9 9 0 0 1 9 9" stroke="var(--red)" stroke-width="2.5"></path>
+        </svg>
+      </div>
+      <div class="id-block-eyebrow">Please Wait</div>
+      <div class="version-block-title">Checking Authorization</div>
+      <div class="version-block-message">Verifying your TikTok account in the background&hellip;</div>
+      <div class="id-block-divider"></div>
+      <div class="id-block-ref">REF · TT-ID-CHK &nbsp;·&nbsp; <span id="tiktokCheckingCountdown">20s</span></div>
+    </div>
+  </div>
+
+  
+  <div class="version-block-overlay" id="tiktokLoginOverlay" hidden>
+    <div class="id-block-card">
+      <div class="id-block-icon-wrap id-login-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      <div class="id-block-eyebrow">Sign In Required</div>
+      <div class="version-block-title">Sign in to TikTok</div>
+      <div class="version-block-message">You need to be signed into a TikTok account in this browser to use this extension.</div>
+      <button class="version-block-btn" id="tiktokLoginBtn" type="button">Sign in to TikTok</button>
+      <div class="id-block-divider" style="margin-top: 18px;"></div>
+      <div class="id-block-ref">REF · TT-ID-AUTH</div>
+    </div>
+  </div>
+
+  
+  <div class="version-block-overlay" id="tiktokIdBlockOverlay" hidden>
+    <div class="id-block-card">
+      <div class="id-block-eyebrow">Access Denied</div>
+      <div class="version-block-title">Account Restricted</div>
+      <div class="version-block-message" id="tiktokIdBlockMessage">This TikTok account has been restricted from using this extension.</div>
+      <div class="id-block-divider"></div>
+      <div class="id-block-ref">REF · TT-ID-GATE</div>
+    </div>
+  </div>
+
+  
+  <div class="announcement-banner" id="announcementBanner" hidden>
+    <div class="announcement-card">
+      
+
+      <div class="announcement-header" id="announcementHeader" hidden>
+        <div class="announcement-header-subtitle" id="announcementHeaderSubtitle"></div>
+      </div>
+
+      <div class="announcement-badge" id="announcementBadge"></div>
+      <div class="announcement-title" id="announcementTitle"></div>
+      <div class="announcement-message" id="announcementMessage"></div>
+
+      
+      <div class="announcement-cards" id="announcementCards" hidden></div>
+
+      
+      <div class="announcement-buttons" id="announcementButtons">
+        <button class="announcement-btn primary" id="announcementPrimaryBtn" type="button"></button>
+      </div>
+
+      <div class="announcement-footnote" id="announcementFootnote"></div>
+    </div>
+  </div>
+
+  
+  <input type="file" id="fileInput" accept="video/*">
+
+  
+  
+  
+  <div class="app-content page-view active" id="page-patcher">
+
+    <div class="app-title-section">
+      <div class="app-title">
+        <span class="white">Idleryu X </span><span class="amber">Tiktok</span>
+      </div>
+      <div class="app-subtitle">Tools for high quality TikTok upload</div>
+    </div>
+
+    
+    <div class="card patcher-card">
+      <div class="patcher-card-header" style="display:none;">
+        <div class="patcher-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+        </div>
+        <div class="patcher-title">Video Patcher</div>
+      </div>
+
+      
+      <div class="tiktok-studio-row tsw-combined">
+        <div class="tsw-row">
+          <button class="tiktok-studio-click" id="tiktokStudioBtn" type="button">
+            <div class="sysfeat-icon live-tiktok-logo" aria-hidden="true">
+              <svg class="live-tt-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16.6 5.82c-1.02-.9-1.6-2.17-1.6-3.53h-3.24v13.72c0 1.63-1.32 2.95-2.95 2.95a2.95 2.95 0 0 1 0-5.9c.28 0 .55.04.8.11V9.9a6.2 6.2 0 0 0-.8-.05A6.2 6.2 0 0 0 2.6 16.05 6.2 6.2 0 0 0 8.8 22.25a6.2 6.2 0 0 0 6.2-6.2V9.03a8.6 8.6 0 0 0 5.02 1.6V7.4c-1.24 0-2.4-.4-3.42-1.18z"/>
+              </svg>
+              <span class="live-tt-ring live-tt-ring-outer"></span>
+              <span class="live-tt-ring live-tt-ring-mid"></span>
+            </div>
+            <div class="sysfeat-head-text">
+              <div class="sysfeat-title">Tiktok Studio</div>
+              <div class="sysfeat-subtitle">Open upload page</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="tsw-divider"></div>
+
+        <div class="tsw-row">
+          <div class="tiktok-studio-click" style="cursor:default;">
+            <div class="sysfeat-icon wm-live-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <!-- outer live rings -->
+                <circle class="wm-live-ring wm-live-ring-outer" cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+                <circle class="wm-live-ring wm-live-ring-mid" cx="12" cy="12" r="6.4" stroke="currentColor" stroke-width="1.35" opacity="0.55"/>
+                <!-- core live dot -->
+                <circle class="wm-live-dot" cx="12" cy="12" r="3.1" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
+            <div class="sysfeat-head-text">
+              <div class="sysfeat-title">Watermark</div>
+              <div class="sysfeat-subtitle">Credit line on upload</div>
+            </div>
+          </div>
+          <button class="wm-toggle" id="watermarkToggle" type="button" role="switch" aria-checked="false" aria-label="Watermark toggle">
+            <span class="wm-toggle-knob"></span>
+          </button>
+        </div>
+      </div>
+
+      <button class="upload-btn" id="uploadTrigger" type="button" style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+          <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Select Video (Upload &amp; Patch)
+      </button>
+
+      <div id="detectSection" style="display:none;">
+        <div style="margin:18px 0 14px;border-top:1px solid var(--border);"></div>
+
+        <div class="status-inline-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          System Detect
+        </div>
+
+        <div class="info-row" style="margin-top:10px;">
+          <div class="info-cell">
+            <div class="info-cell-label">Resolution</div>
+            <div class="info-cell-value" id="detectResolution">—</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-cell-label">Frame Rate</div>
+            <div class="info-cell-value" id="detectFrameRate">—</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-cell">
+            <div class="info-cell-label">Duration</div>
+            <div class="info-cell-value" id="detectDuration">—</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-cell-label">File Size</div>
+            <div class="info-cell-value" id="detectFileSize">—</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-cell">
+            <div class="info-cell-label">Bitrate</div>
+            <div class="info-cell-value" id="detectBitrate">—</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-cell-label">Status</div>
+            <div class="info-cell-value" id="detectStatus">—</div>
+          </div>
+        </div>
+
+        <div class="detect-warning" id="detectSizeWarning" style="display:none;">
+          Video is over 90 MB — it may flop because of that. Compress it before patching.
+        </div>
+      </div>
+
+      <div id="processStatusSection" style="display:none;">
+        <div style="margin:18px 0 14px;border-top:1px solid var(--border);"></div>
+
+        <div class="status-inline-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          Process Status
+        </div>
+        <div id="status" class="status-box" data-state="idle" data-i18n="ready">Ready — select a video to begin.</div>
+      </div>
+    </div>
+
+    
+    <button class="patch-btn" id="patchBtn" disabled type="button">
+      <span class="patch-btn-shine"></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+      <span class="patch-btn-label" data-i18n="patchDownload">Patch &amp; Download</span>
+    </button>
+
+    
+    <div class="processing-overlay" id="processingCard" hidden>
+      <div class="processing-modal-card">
+        <div class="processing-eyebrow">
+          <span class="processing-eyebrow-dot"></span>
+          Patching in progress
+        </div>
+
+        <div class="proc-linear-wrap">
+          <div class="processing-percent-big">
+            <span id="procPercent">0</span><span class="processing-percent-sign">%</span>
+          </div>
+          <div class="proc-linear-track">
+            <div class="proc-linear-fill" id="procLinearFill">
+              <div class="proc-linear-shimmer"></div>
+            </div>
+          </div>
+          <div class="proc-linear-labels">
+            <span>0</span>
+            <span>100</span>
+          </div>
+        </div>
+
+        <div class="processing-title" id="procStageTitle">Loading Video</div>
+        <div class="processing-subtitle">Patching the sample tables directly — keep this window open until it finishes.</div>
+
+        <div class="processing-stages" id="procStages">
+          <div class="processing-stage" data-stage="load">
+            <span class="processing-stage-dot"></span>
+            <span class="processing-stage-label">Loading Video</span>
+          </div>
+          <div class="processing-stage" data-stage="init">
+            <span class="processing-stage-dot"></span>
+            <span class="processing-stage-label">Initializing FFmpeg</span>
+          </div>
+          <div class="processing-stage" data-stage="analyze">
+            <span class="processing-stage-dot"></span>
+            <span class="processing-stage-label">Analyzing Metadata</span>
+          </div>
+          <div class="processing-stage" data-stage="save">
+            <span class="processing-stage-dot"></span>
+            <span class="processing-stage-label">Saving Output</span>
+          </div>
+          <div class="processing-stage" data-stage="done">
+            <span class="processing-stage-dot"></span>
+            <span class="processing-stage-label">Completed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="social-divider">
+      <span class="social-divider-line"></span>
+      <span class="social-divider-label">More Information</span>
+      <span class="social-divider-line"></span>
+    </div>
+    <div class="social-row">
+      <a class="social-btn" href="https://www.tiktok.com/@ryu60fps" target="_blank" rel="noopener noreferrer">
+        <span class="social-icon-circle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#0c0c0c">
+            <path d="M16.6 5.82c-1.02-.9-1.6-2.17-1.6-3.53h-3.24v13.72c0 1.63-1.32 2.95-2.95 2.95a2.95 2.95 0 0 1 0-5.9c.28 0 .55.04.8.11V9.9a6.2 6.2 0 0 0-.8-.05A6.2 6.2 0 0 0 2.6 16.05 6.2 6.2 0 0 0 8.8 22.25a6.2 6.2 0 0 0 6.2-6.2V9.03a8.6 8.6 0 0 0 5.02 1.6V7.4c-1.24 0-2.4-.4-3.42-1.18z"/>
+          </svg>
+        </span>
+        TikTok
+      </a>
+      <a class="social-btn" href="https://t.me/loverielle76" target="_blank" rel="noopener noreferrer">
+        <span class="social-icon-circle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#0c0c0c">
+            <path d="M21.9 3.6L18.7 19.4c-.24 1.06-.87 1.32-1.76.82l-4.86-3.58-2.35 2.26c-.26.26-.48.48-.98.48l.35-4.93 8.97-8.1c.39-.35-.09-.54-.6-.19L6.6 12.8l-4.83-1.5c-1.05-.33-1.07-1.05.22-1.55L20.6 2.4c.87-.33 1.63.2 1.3 1.2z"/>
+          </svg>
+        </span>
+        Telegram
+      </a>
+    </div>
+
+  </div>
+
+  <div class="cu-warning-overlay" id="sizeWarning" role="dialog" aria-modal="true" aria-labelledby="sizeWarningTitle" hidden>
+    <div class="cu-warning-modal">
+      <span class="cu-warning-kicker" data-i18n="sizeWarningKicker">File size warning</span>
+      <h2 class="cu-warning-title" id="sizeWarningTitle" data-i18n="sizeWarningTitle">Video over 90 MB</h2>
+      <p class="cu-warning-body" data-i18n="sizeWarningBody">
+        Your video is bigger than 90 MB. It may flop because of that. It is HIGHLY recommended to compress it more.
+      </p>
+      <button class="cu-warning-close" id="sizeWarningClose" type="button" data-i18n="close">Close</button>
+    </div>
+  </div>
+
+  
+  <script type="module" src="ui/index.js"></script>
+</body>
+</html>

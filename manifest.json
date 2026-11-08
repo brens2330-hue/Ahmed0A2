@@ -1,0 +1,116 @@
+{
+  "manifest_version": 3,
+  "name": "1dleryu X TikTok",
+  "version": "5.1",
+  "description": "Tools For High Quality Uploads on Tiktok",
+  "permissions": [
+    "downloads",
+    "tabs",
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "*://*.tiktok.com/*",
+    "https://county-back-end-blocked.vercel.app/api/access*",
+    "https://idleryu-announcement-v3.vercel.app/announcement.json*",
+    "https://idleryu-announcement-v3.vercel.app/version.json*",
+    "https://1dleryu-id-gate-backend.vercel.app/api/*",
+    "https://tikquick.online/*",
+    "https://ps.tikquick.online/*",
+    "https://tqps.mikeden.site/*"
+  ],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "1dleryu X TikTok",
+    "default_icon": {
+      "16": "assets/icons/ryu_logo_16.png",
+      "32": "assets/icons/ryu_logo_32.png",
+      "48": "assets/icons/ryu_logo_48.png",
+      "128": "assets/icons/ryu_logo_128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.tiktok.com/*",
+        "*://*.tiktok.com/*"
+      ],
+      "js": [
+        "core/access-gate.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://www.tiktok.com/*",
+        "*://*.tiktok.com/*"
+      ],
+      "js": [
+        "core/dynamic_island.js"
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "*://www.tiktok.com/*",
+        "*://*.tiktok.com/*"
+      ],
+      "js": [
+        "core/tiktok-identity.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://www.tiktok.com/tiktokstudio/upload*",
+        "*://www.tiktok.com/upload*",
+        "*://www.tiktok.com/creator-center*",
+        "*://*.tiktok.com/upload*",
+        "*://*.tiktok.com/creator-center*"
+      ],
+      "js": [
+        "core/inject.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "*://www.tiktok.com/tiktokstudio/upload*",
+        "*://www.tiktok.com/upload*",
+        "*://www.tiktok.com/creator-center*",
+        "*://*.tiktok.com/upload*",
+        "*://*.tiktok.com/creator-center*"
+      ],
+      "js": [
+        "core/mp4-patch.js",
+        "core/upload-progress.js",
+        "core/content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "core/dynamic_island.js",
+        "assets/icons/*"
+      ],
+      "matches": [
+        "*://*.tiktok.com/*"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "assets/icons/ryu_logo_16.png",
+    "32": "assets/icons/ryu_logo_32.png",
+    "48": "assets/icons/ryu_logo_48.png",
+    "128": "assets/icons/ryu_logo_128.png"
+  }
+}
